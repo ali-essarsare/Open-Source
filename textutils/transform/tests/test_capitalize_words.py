@@ -1,6 +1,8 @@
+"""Tests for the public capitalize_words transformation."""
+
 import pytest
 
-from textutils import capitalize_words
+from textutils.transform import capitalize_words
 
 
 @pytest.mark.parametrize(
@@ -14,13 +16,17 @@ from textutils import capitalize_words
         ("HELLO WORLD", "Hello World"),
         ("don't stop", "Don't Stop"),
         ("élève à l'école", "Élève À L'école"),
+        ("hello  world", "Hello  World"),
+        (" hello ", " Hello "),
+        ("  ", "  "),
+        ("hello\tWORLD\nagain", "Hello\tworld\nagain"),
     ],
 )
 def test_capitalize_words(text, expected):
     assert capitalize_words(text) == expected
 
 
-def test_capitalize_words_preserves_spacing():
-    # Splitting on " " keeps repeated and surrounding spaces unchanged.
-    assert capitalize_words("hello  world") == "Hello  World"
-    assert capitalize_words(" hello ") == " Hello "
+@pytest.mark.parametrize("text", [None, 42])
+def test_capitalize_words_rejects_non_strings(text):
+    with pytest.raises(TypeError, match="text must be a string"):
+        capitalize_words(text)
