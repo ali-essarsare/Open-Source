@@ -1,7 +1,7 @@
-"""Functions that transform a text into another text."""
+"""Public text-transformation functions."""
 
-from .reverse import reverse
-from .capitalize_words import capitalize_words
-from .snake_case import snake_case
+from textutils.transform._capitalize_words import capitalize_words
+from textutils.transform._reverse import reverse
+from textutils.transform._snake_case import snake_case
 
-__all__ = ["reverse", "capitalize_words", "snake_case"]
+__all__ = ["capitalize_words", "reverse", "snake_case"]

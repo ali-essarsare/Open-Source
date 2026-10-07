@@ -1,6 +1,8 @@
+"""Tests for the public word-frequency API."""
+
 import pytest
 
-from textutils import word_frequency
+from textutils.frequency import word_frequency
 
 
 @pytest.mark.parametrize(
@@ -23,6 +25,7 @@ from textutils import word_frequency
             [("ccc", 3), ("bb", 2)],
         ),
         ("", {}, []),
+        ("   \t\n", {}, []),
         ("The cat", {"top_n": 0}, []),
         (
             "Le café est très bon, le café!",
@@ -32,22 +35,25 @@ from textutils import word_frequency
         ("wait -- what", {}, [("wait", 1), ("what", 1)]),
         ("'hello' hello", {}, [("hello", 2)]),
         ("hello,world", {}, [("hello", 1), ("world", 1)]),
+        ("Hello", {}, [("hello", 1)]),
+        ("hello hello", {"min_length": 6}, []),
     ],
 )
 def test_word_frequency(text, kwargs, expected):
     assert word_frequency(text, **kwargs) == expected
 
 
-def test_word_frequency_none_raises_typeerror():
-    with pytest.raises(TypeError):
-        word_frequency(None)
+@pytest.mark.parametrize("text", [None, 42])
+def test_word_frequency_rejects_non_strings(text):
+    with pytest.raises(TypeError, match="text must be a string"):
+        word_frequency(text)
 
 
-def test_word_frequency_negative_top_n_raises_valueerror():
-    with pytest.raises(ValueError):
+def test_word_frequency_rejects_negative_top_n():
+    with pytest.raises(ValueError, match="top_n must not be negative"):
         word_frequency("hi", top_n=-1)
 
 
-def test_word_frequency_invalid_min_length_raises_valueerror():
-    with pytest.raises(ValueError):
+def test_word_frequency_rejects_min_length_below_one():
+    with pytest.raises(ValueError, match="min_length must be at least 1"):
         word_frequency("hi", min_length=0)

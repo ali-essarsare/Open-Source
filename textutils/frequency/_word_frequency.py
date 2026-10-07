@@ -1,3 +1,5 @@
+"""Count word occurrences in a string."""
+
 import re
 from collections import Counter
 
@@ -33,10 +35,10 @@ def word_frequency(text, top_n=None, min_length=1):
 
     Examples
     --------
-    >>> word_frequency("the cat and the dog and the bird")
-    [('the', 3), ('and', 2), ('bird', 1), ('cat', 1), ('dog', 1)]
-    >>> word_frequency("Don't stop: open-source is open-source", top_n=2)
-    [('open-source', 2), ("don't", 1)]
+        >>> word_frequency("the cat and the dog and the bird")
+        [('the', 3), ('and', 2), ('bird', 1), ('cat', 1), ('dog', 1)]
+        >>> word_frequency("Don't stop: open-source is open-source", top_n=2)
+        [('open-source', 2), ("don't", 1)]
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")

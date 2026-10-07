@@ -1,4 +1,6 @@
-from .word_count import word_count
-from .character_count import character_count
+"""Public text-counting functions."""
 
-__all__ = ["word_count", "character_count"]
+from textutils.counting._character_count import character_count
+from textutils.counting._word_count import word_count
+
+__all__ = ["character_count", "word_count"]

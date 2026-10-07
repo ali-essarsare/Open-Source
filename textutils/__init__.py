@@ -1,12 +1,14 @@
-from .counting import word_count, character_count
-from .transform import reverse, capitalize_words, snake_case
-from .frequency import word_frequency
+"""Public API for the textutils package."""
+
+from textutils.counting import character_count, word_count
+from textutils.frequency import word_frequency
+from textutils.transform import capitalize_words, reverse, snake_case
 
 __all__ = [
-    "word_count",
+    "capitalize_words",
     "character_count",
     "reverse",
-    "capitalize_words",
     "snake_case",
+    "word_count",
     "word_frequency",
 ]
