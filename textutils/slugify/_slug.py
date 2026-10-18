@@ -46,13 +46,21 @@ def slugify(text, separator="-", max_length=None):
         return ""
     if max_length is None:
         return separator.join(words)
+    if max_length == 0:
+        return ""
 
-    result = words[0][:max_length]
-    if len(words[0]) > max_length:
-        return result
-    for word in words[1:]:
+    result = ""
+    for word in words:
+        if not result:
+            if len(word) <= max_length:
+                result = word
+            else:
+                return word[:max_length]
+            continue
+
         candidate = result + separator + word
         if len(candidate) > max_length:
             break
         result = candidate
+
     return result

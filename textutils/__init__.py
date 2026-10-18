@@ -2,12 +2,14 @@
 
 from textutils.counting import character_count, word_count
 from textutils.frequency import word_frequency
+from textutils.slugify import slugify
 from textutils.transform import capitalize_words, reverse, snake_case
 
 __all__ = [
     "capitalize_words",
     "character_count",
     "reverse",
+    "slugify",
     "snake_case",
     "word_count",
     "word_frequency",
