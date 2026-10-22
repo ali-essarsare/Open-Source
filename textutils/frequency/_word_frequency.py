@@ -42,8 +42,13 @@ def word_frequency(text, top_n=None, min_length=1):
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    if top_n is not None and top_n < 0:
-        raise ValueError("top_n must not be negative")
+    if top_n is not None:
+        if isinstance(top_n, bool) or not isinstance(top_n, int):
+            raise TypeError("top_n must be an int or None")
+        if top_n < 0:
+            raise ValueError("top_n must not be negative")
+    if isinstance(min_length, bool) or not isinstance(min_length, int):
+        raise TypeError("min_length must be an int")
     if min_length < 1:
         raise ValueError("min_length must be at least 1")
 
