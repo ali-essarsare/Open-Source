@@ -4,9 +4,17 @@ import re
 import unicodedata
 
 # Letters that do not decompose under NFKD but have a sensible ASCII form.
-_SPECIAL = str.maketrans({
-    "ß": "ss", "æ": "ae", "œ": "oe", "ø": "o", "đ": "d", "ł": "l", "þ": "th",
-})
+_SPECIAL = str.maketrans(
+    {
+        "ß": "ss",
+        "æ": "ae",
+        "œ": "oe",
+        "ø": "o",
+        "đ": "d",
+        "ł": "l",
+        "þ": "th",
+    }
+)
 
 _WORD_RE = re.compile(r"[a-z0-9]+")
 
