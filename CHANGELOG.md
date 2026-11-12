@@ -1,3 +1,18 @@
+## [1.0.0] - 2026-11-12
+
+### Added
+
+- `snake_case()` function
+- Test suite with pytest and coverage
+- Black and Ruff configuration
+- Release workflow publishing to PyPI
+
+### Changed
+
+- Reorganized into `counting`, `frequency`, `slugify`, and `transform`
+  subpackages with a public API exposed through `__init__.py`
+- NumPy-style docstrings
+
 ## [Unreleased]
 
 ### Changed
